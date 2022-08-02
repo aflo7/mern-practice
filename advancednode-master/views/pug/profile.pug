@@ -8,4 +8,22 @@ html
     link(rel='stylesheet', href='/public/style.css')
   body
     h1.border.center FCC Advanced Node and Express Profile
-    
+    h2.center#welcome Welcome, #{username}! 
+    //- h2 element with class center and id welcome ^^
+
+    if tasks.length != 0
+      div="Tasks"
+        ul
+          each val, index in tasks
+            li= (index + 1) + ': ' + val
+
+            
+    if !tasks || tasks.length == 0
+      div="You have no tasks"
+
+    form(action='/addtask' method='post')
+      div
+        input(type='text' name='taskString' placeholder='Enter a task')
+        input(type='hidden' name='username' value={username})
+        button(type='submit') Add Task
+    a(href='/logout') Logout
